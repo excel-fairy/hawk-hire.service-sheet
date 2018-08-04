@@ -1,3 +1,11 @@
+
+/**
+ * Libraries: ExportSpreadsheet - 16UdkRtPJTYdhai2fDRAX8NdYbJhs-gWWNVXenA1-w8CniPQ5NMGlpe3R (v1)
+ *
+ *
+ */
+
+
 var SPREADSHEET = {
     spreadSheet: SpreadsheetApp.getActiveSpreadsheet(),
     sheets: {
@@ -23,7 +31,6 @@ var SPREADSHEET = {
     }
 };
 var SERVICE_REGISTER_SPREADSHEET = {
-    id: SERVICE_REGISTER_SPREADSHEET_ID,
     valuesRange: 'A3:AA47',
     hoursColumnOffset: 2,
     lastServiceCompletedColumnOffset: 3,
@@ -164,9 +171,10 @@ function exportToPdf() {
             r2: TASK_LIST_COORDINATES.row + getNbTasks(),
             c1: TASK_LIST_COORDINATES.col - 1,
             c2: TASK_LIST_COORDINATES.col + TASK_LIST_COORDINATES.nbCols
-        }
+        },
+        fileFormat: 'pdf'
     };
-    save(exportOptions);
+    ExportSpreadsheet.export(exportOptions);
     copyDataToServiceRegistry();
 }
 
@@ -186,7 +194,7 @@ function getFolderToExportPdfTo(folderName){
 }
 
 function copyDataToServiceRegistry(){
-    var serviceRegisterSpreadsheet = SpreadsheetApp.openById(SERVICE_REGISTER_SPREADSHEET.id);
+    var serviceRegisterSpreadsheet = SpreadsheetApp.openById(SERVICE_REGISTER_SPREADSHEET_ID);
     var serviceRegisterSheet = serviceRegisterSpreadsheet.getActiveSheet();
     var equipmentsNumbersRange = serviceRegisterSheet.getRange(SERVICE_REGISTER_SPREADSHEET.valuesRange);
     var equipmentsNumbersValues = equipmentsNumbersRange.getValues();

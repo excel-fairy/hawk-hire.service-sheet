@@ -1,0 +1,2 @@
+var SERVICE_REGISTER_SPREADSHEET_ID = '#####';
+var EXPORT_FOLDER_ID = '#####';

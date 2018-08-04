@@ -1,11 +1,3 @@
-
-/**
- * Libraries: ExportSpreadsheet - 16UdkRtPJTYdhai2fDRAX8NdYbJhs-gWWNVXenA1-w8CniPQ5NMGlpe3R (v1)
- *
- *
- */
-
-
 var SPREADSHEET = {
     spreadSheet: SpreadsheetApp.getActiveSpreadsheet(),
     sheets: {
@@ -63,9 +55,17 @@ function importTaskList() {
     taskRange.setBorder(true, true, true, true, false, false);
     highlightKeyWordCells(taskRange);
 
-    if (serviceSheetHasComments()){
+    if (serviceSheetIsRepairMode() || serviceSheetIsInspectionMode()){
         var commentCellRow = SPREADSHEET.sheets.servicePerTypeSheet.sheet.getRange(SPREADSHEET.sheets.servicePerTypeSheet.commentCellRowCell).getValue();
         SPREADSHEET.sheets.serviceSheet.sheet.getRange(commentCellRow, TASK_LIST_COORDINATES.col, 1, TASK_LIST_COORDINATES.nbCols).setBackground(BEIGE);
+        if(serviceSheetIsRepairMode()) {
+            var firstLineOfColumnBox = SPREADSHEET.sheets.serviceSheet.sheet.getRange(TASK_LIST_COORDINATES.row + 1, TASK_LIST_COORDINATES.col, 1, 4);
+            firstLineOfColumnBox.setValues([['Part used', null, 'Part no', 'Qty']]); // Second parameter is null because two columns are merged and we need to skip the merged column
+            firstLineOfColumnBox.setFontWeight('bold');
+            var penultimateLineFirstColOfCommentBox = SPREADSHEET.sheets.serviceSheet.sheet.getRange(TASK_LIST_COORDINATES.row + getNbTasks() - 2, TASK_LIST_COORDINATES.col);
+            penultimateLineFirstColOfCommentBox.setValue('Total number of hours of the job:');
+            penultimateLineFirstColOfCommentBox.setFontWeight('bold');
+        }
     }
 
     SPREADSHEET.sheets.serviceSheet.sheet.getRange(TASK_LIST_COORDINATES.row, TASK_LIST_COORDINATES.col + TASK_LIST_COORDINATES.nbCols - 1, MAX_NB_TASKS, 1).setDataValidation(null);
@@ -119,10 +119,6 @@ function highlightKeyWordCells(range){
             if(keyWords.indexOf(cell.getValue()) !== -1)
                 cell.setFontWeight("bold").setBackground(BEIGE);
         }
-}
-
-function serviceSheetHasComments(){
-    return SPREADSHEET.sheets.serviceSheet.sheet.getRange("B15").getValue() === "Comments";
 }
 
 function serviceSheetIsInspectionMode(){

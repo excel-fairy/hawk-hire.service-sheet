@@ -20,12 +20,14 @@ function createInstallableTriggers(){
 function installableOnEdit(e){
     var range = e.range;
     if(range.getSheet().getName() === SPREADSHEET.sheets.serviceSheet.sheet.getRange(SPREADSHEET.sheets.serviceSheet.importTaskListButtonCell).getSheet().getName()
-        && range.getA1Notation() === SPREADSHEET.sheets.serviceSheet.sheet.getRange(SPREADSHEET.sheets.serviceSheet.importTaskListButtonCell).getA1Notation()){
+        && range.getA1Notation() === SPREADSHEET.sheets.serviceSheet.sheet.getRange(SPREADSHEET.sheets.serviceSheet.importTaskListButtonCell).getA1Notation()
+        && range.getValue() === true){
         range.setValue(false);
         importTaskList();
     }
     else if(range.getSheet().getName() === SPREADSHEET.sheets.serviceSheet.sheet.getRange(SPREADSHEET.sheets.serviceSheet.exportSheetButtonCell).getSheet().getName()
-        && range.getA1Notation() === SPREADSHEET.sheets.serviceSheet.sheet.getRange(SPREADSHEET.sheets.serviceSheet.exportSheetButtonCell).getA1Notation()){
+        && range.getA1Notation() === SPREADSHEET.sheets.serviceSheet.sheet.getRange(SPREADSHEET.sheets.serviceSheet.exportSheetButtonCell).getA1Notation()
+        && range.getValue() === true){
         range.setValue(false);
         exportToPdf();
     }

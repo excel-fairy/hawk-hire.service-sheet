@@ -9,7 +9,9 @@ var SPREADSHEET = {
             typeCell: 'C12',
             topLefCellOfTaskList: 'B15',
             machineHoursCell: 'C13',
-            taskDateCell: 'C6'
+            taskDateCell: 'C6',
+            importTaskListButtonCell: 'H8',
+            exportSheetButtonCell: 'H10'
 
         },
         servicePerTypeSheet: {

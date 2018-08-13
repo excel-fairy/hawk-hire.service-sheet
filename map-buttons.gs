@@ -3,7 +3,9 @@ function onOpen() {
     SPREADSHEET.sheets.serviceSheet.sheet.getRange(SPREADSHEET.sheets.serviceSheet.exportSheetButtonCell).setValue(false);
     SpreadsheetApp.getUi()
         .createMenu('Run scripts')
-        .addItem('Authorize scripts to access Google drive ', 'createInstallableTriggers')
+        .addItem('Import Task List', 'importTaskList')
+        .addItem('Export Sheet and save in drive', 'exportToPdf')
+        .addItem('Authorize scripts to access Google drive from smartphone', 'createInstallableTriggers')
         .addToUi();
 }
 

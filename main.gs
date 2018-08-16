@@ -10,8 +10,8 @@ var SPREADSHEET = {
             topLefCellOfTaskList: 'B15',
             machineHoursCell: 'C13',
             taskDateCell: 'C6',
-            importTaskListButtonCell: 'H8',
-            exportSheetButtonCell: 'H10'
+            importTaskListButtonCell: 'J5',
+            exportSheetButtonCell: 'J10'
 
         },
         servicePerTypeSheet: {
@@ -168,8 +168,9 @@ function exportToPdf() {
             r1: TASK_LIST_COORDINATES.fullDocumentBeginningRow - 1,
             r2: TASK_LIST_COORDINATES.row + getNbTasks(),
             c1: TASK_LIST_COORDINATES.col - 1,
-            c2: TASK_LIST_COORDINATES.col + TASK_LIST_COORDINATES.nbCols
+            c2: TASK_LIST_COORDINATES.col + TASK_LIST_COORDINATES.nbCols - 1
         },
+        repeatHeader: true,
         fileFormat: 'pdf'
     };
     ExportSpreadsheet.export(exportOptions);

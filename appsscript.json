@@ -1,0 +1,12 @@
+{
+  "timeZone": "Asia/Calcutta",
+  "dependencies": {
+    "libraries": [{
+      "userSymbol": "ExportSpreadsheet",
+      "libraryId": "1XgUnRIGc3oOvbyWcavQcw8N_zOGpp8uNPiyMsI6MVzyMOx2lwezmnRYY",
+      "version": "3",
+      "developmentMode": true
+    }]
+  },
+  "exceptionLogging": "STACKDRIVER"
+}
